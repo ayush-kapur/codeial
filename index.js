@@ -4,6 +4,8 @@ const port = 8000;
 // adding the library
 const expressLayout = require('express-ejs-layouts');
 
+const db = require('./config/mongoose');
+
 app.use(express.static('./assets'));
 
 // to let the routes know that what a layout is
