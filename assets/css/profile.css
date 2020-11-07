@@ -1,3 +1,13 @@
 body{
     background-color: greenyellow;
 }
+a{
+    text-decoration: none;
+    color: black;
+}
+a div{
+    width: 100px;
+    background-color: white;
+    border: 1px solid black;
+    text-align: center;
+}

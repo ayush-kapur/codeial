@@ -95,3 +95,8 @@ module.exports.createSession = function(req,res){
         }
     });
 }
+
+module.exports.deleteSession = function(req,res){
+    res.clearCookie("user_id");
+    return res.redirect('/users/profile');
+}
