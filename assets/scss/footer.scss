@@ -1,0 +1,19 @@
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: white;
+    background-color: #666566;
+    #pages{
+        ul{
+            list-style: none;
+            li{
+                margin-bottom: 5px;
+                a{
+                    text-decoration: none;
+                    color: white;
+                }
+            }
+        }
+    }
+}

@@ -4,12 +4,16 @@
             <%= title %>
         </title>
         <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/footer.css">
+        <script src="https://kit.fontawesome.com/a1d1eb4f65.js" crossorigin="anonymous"></script>
         <%- style %>
     </head>
     <body>
         <%- include('_header'); %>
-
-        <%- body %>
+        <main id="layout-main">
+            <%- body %>
+        </main>
 
         <%- include('_footer'); %>
 
