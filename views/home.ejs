@@ -15,3 +15,24 @@
 <!-- adding css here to get different design for each layout  -->
 <link rel="stylesheet" href="/css/home.css">
 <h1>Codeial / <%= title%></h1>
+<section id="feed-post">
+    <h4>Posts</h4>
+    <form action="/posts/create" id="new-post-form" method="POST">
+        <textarea name="content" cols="30" rows="3" placeholder="Type Here...." required></textarea>
+        <input type="submit" value="Post">
+    </form>
+</section>
+<div id="post-list-container">
+    <h4>Post List</h4>
+    <ol>
+        <% for(let i of post_list){ %>
+        <p>
+            <li>
+                <b><%= i.content %></b>
+                <br>
+                <small><%= i.user.name %></small>
+            </li>
+        </p>
+        <% } %>
+    </ol>
+</div>
