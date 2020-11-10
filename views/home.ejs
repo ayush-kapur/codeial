@@ -34,7 +34,7 @@
                 <br>
                 <small><%= i.user.name %></small>
                 <% if(locals.user){ %>
-                    <div id="comment-section">
+                    <div class="comment-section">
                         <form action="/comments/create" method="POST">
                             <textarea name="comment" cols="30" rows="3" placeholder="Type Comment Here...." required></textarea>
                             <input type="hidden" name="post" value="<%= i._id %>">
@@ -42,6 +42,17 @@
                         </form>
                     </div>
                 <% } %>
+                <div class="post-comments-list">
+                    <ul id="post-comments<%= i._id %>">
+                        <% for(let j of i.comments){ %>
+                            <p>
+                                <b><%= j.comment %></b>
+                                <br>
+                                <small><%= j.user.name %></small>
+                            </p>
+                        <% } %>
+                    </ul>
+                </div>
             </li>
         </p>
         <% } %>
