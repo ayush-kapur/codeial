@@ -6,12 +6,12 @@ module.exports.profile = function(req,res){
         title: "Profile"
     });
 }
-module.exports.post = function(req,res){
-    //res.end('<h1>Users Post</h1>');
-    return res.render('post',{
-        title: "Post"
-    });
-}
+// module.exports.post = function(req,res){
+//     //res.end('<h1>Users Post</h1>');
+//     return res.render('post',{
+//         title: "Post"
+//     });
+// }
 
 // render the sign in page
 module.exports.sign_in = function(req,res){
