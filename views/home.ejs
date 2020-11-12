@@ -33,6 +33,14 @@
                 <b><%= i.content %></b>
                 <br>
                 <small><%= i.user.name %></small>
+                <!-- if the user is logged in and that user's id matches with posts he/she has made in that case show the delete button  -->
+                <% if((locals.user) && (locals.user.id == i.user.id)){ %>
+                <small>
+                    <a href="/posts/destroy/<%= i.id %>">
+                        <i class="far fa-trash-alt"></i>
+                    </a>
+                </small>
+                <% } %>
                 <% if(locals.user){ %>
                     <div class="comment-section">
                         <form action="/comments/create" method="POST">
@@ -49,6 +57,13 @@
                                 <b><%= j.comment %></b>
                                 <br>
                                 <small><%= j.user.name %></small>
+                                <% if((locals.user) && (locals.user.id == j.user.id)){ %>
+                                    <small>
+                                        <a href="/comments/destroy/<%= j.id %>">
+                                            <i class="far fa-trash-alt"></i>
+                                        </a>
+                                    </small>
+                                <% } %>
                             </p>
                         <% } %>
                     </ul>

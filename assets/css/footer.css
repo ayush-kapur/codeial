@@ -3,7 +3,8 @@ footer {
   align-items: center;
   justify-content: left;
   color: white;
-  background-color: #666566; }
+  background-color: #666566;
+  z-index: 1; }
   footer #pages ul {
     list-style: none; }
     footer #pages ul li {
