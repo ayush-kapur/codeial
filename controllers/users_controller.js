@@ -9,6 +9,18 @@ module.exports.profile = function(req,res){
         });
     });
 }
+
+module.exports.update = function(req,res){
+    // check if the user making the request is same as the one logged in
+    if(req.user.id == req.params.id){
+        User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+            return res.redirect('back');
+        })
+    }else{
+        // else show this error
+        return res.status(401).send('Unauthorized');
+    }
+}
 // module.exports.post = function(req,res){
 //     //res.end('<h1>Users Post</h1>');
 //     return res.render('post',{
