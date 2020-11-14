@@ -1,3 +1,22 @@
 body{
     background-color: #9FCEE5;
+    h1{
+        text-align: center;
+    }
+    #home-container{
+        display: flex;
+        #another-section{
+            width: 15%;
+            border-right: 1px solid grey;
+        }
+        #posts-container{
+            padding-left: 50px;
+            flex: 1;
+        }
+        #user-friends{
+            width: 20%;
+            border-left: 1px solid grey;
+            padding-left: 10px;;
+        }
+    }
 }

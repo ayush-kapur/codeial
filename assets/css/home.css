@@ -1,2 +1,16 @@
 body {
   background-color: #9FCEE5; }
+  body h1 {
+    text-align: center; }
+  body #home-container {
+    display: flex; }
+    body #home-container #another-section {
+      width: 15%;
+      border-right: 1px solid grey; }
+    body #home-container #posts-container {
+      padding-left: 50px;
+      flex: 1; }
+    body #home-container #user-friends {
+      width: 20%;
+      border-left: 1px solid grey;
+      padding-left: 10px; }
