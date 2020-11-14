@@ -1,0 +1,12 @@
+<p>
+    <b><%= j.comment %></b>
+    <br>
+    <small><%= j.user.name %></small>
+    <% if((locals.user) && (locals.user.id == j.user.id)){ %>
+        <small>
+            <a href="/comments/destroy/<%= j.id %>">
+                <i class="far fa-trash-alt"></i>
+            </a>
+        </small>
+    <% } %>
+</p>

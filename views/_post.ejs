@@ -1,0 +1,29 @@
+<li>
+    <b><%= i.content %></b>
+    <br>
+    <small><%= i.user.name %></small>
+    <!-- if the user is logged in and that user's id matches with posts he/she has made in that case show the delete button  -->
+    <% if((locals.user) && (locals.user.id == i.user.id)){ %>
+    <small>
+        <a href="/posts/destroy/<%= i.id %>">
+            <i class="far fa-trash-alt"></i>
+        </a>
+    </small>
+    <% } %>
+    <% if(locals.user){ %>
+        <div class="comment-section">
+            <form action="/comments/create" method="POST">
+                <textarea name="comment" cols="30" rows="3" placeholder="Type Comment Here...." required></textarea>
+                <input type="hidden" name="post" value="<%= i._id %>">
+                <input type="submit" value="Comment">
+            </form>
+        </div>
+    <% } %>
+    <div class="post-comments-list">
+        <ul id="post-comments<%= i._id %>">
+            <% for(j of i.comments){ %>
+                <%- include('_comment'); %>
+            <% } %>
+        </ul>
+    </div>
+</li>

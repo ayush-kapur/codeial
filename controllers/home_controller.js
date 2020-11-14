@@ -1,5 +1,6 @@
 const { populate } = require('../models/posts');
 const Post = require('../models/posts');
+const User = require('../models/users');
 
 module.exports.home = function(req,res){
     //return res.end('<h1>Express is up for Codeial</h1>');
@@ -18,7 +19,7 @@ module.exports.home = function(req,res){
     //     });
     // })
 
-    // we use populate command(available in mongoose) access the user database
+    // we use populate command(available in mongoose) to access the user database
     Post.find({})
     .populate('user')
     .populate({
@@ -32,9 +33,12 @@ module.exports.home = function(req,res){
             console.log('Error in fetching posts from db');
             return;
         }
-        return res.render('home',{
-            title: "Home",
-            post_list: posts
+        User.find({},function(err,users){
+            return res.render('home',{
+                title: "Home",
+                post_list: posts,
+                all_users: users
+            });
         });
     })
 }
