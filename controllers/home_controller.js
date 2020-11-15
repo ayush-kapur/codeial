@@ -19,26 +19,64 @@ module.exports.home = function(req,res){
     //     });
     // })
 
+    // METHOD 1
     // we use populate command(available in mongoose) to access the user database
-    Post.find({})
-    .populate('user')
-    .populate({
-        path: 'comments',
-        populate:{
-            path: 'user'
-        }
-    })
-    .exec(function(err,posts){
-        if(err){
-            console.log('Error in fetching posts from db');
-            return;
-        }
-        User.find({},function(err,users){
-            return res.render('home',{
-                title: "Home",
-                post_list: posts,
-                all_users: users
-            });
-        });
-    })
+    // Post.find({})
+    // .populate('user')
+    // .populate({
+    //     path: 'comments',
+    //     populate:{
+    //         path: 'user'
+    //     }
+    // })
+    // .exec(function(err,posts){
+    //     if(err){
+    //         console.log('Error in fetching posts from db');
+    //         return;
+    //     }
+    //     User.find({},function(err,users){
+    //         return res.render('home',{
+    //             title: "Home",
+    //             post_list: posts,
+    //             all_users: users
+    //         });
+    //     });
+    // })
 }
+
+// To overcome the callback hell we use async await
+module.exports.home = async function(req,res){
+    // for error handling we are using try and catch
+    try{
+        let posts = await Post.find({})
+        .populate('user')
+        .populate({
+            path: 'comments',
+            populate:{
+                path: 'user'
+            }
+        });
+        
+        let users= await User.find({});
+    
+        return res.render('home',{
+            title: "Home",
+            post_list: posts,
+            all_users: users
+        });
+
+    }catch(err){
+        console.log('Error',err);
+        return;
+    }    
+}
+// Using promises
+// METHOD 2
+// Using then
+// Post.find({},populate('comments').then(function(){}))
+
+// OR
+
+// METHOD 3
+// let posts = Post.find({},populate('comments').exec();
+// posts.then();
