@@ -80,11 +80,15 @@ module.exports.create = function(req,res){
 
 // sign in and create a session for the user
 module.exports.createSession = function(req,res){
+    // Set a flash message by passing the key, followed by the value, to req.flash()
+    req.flash('success','logged in successfully');
+
     return res.redirect('/');
 }
 
 module.exports.destroySession = function(req,res){
-    
     req.logout();
+    // Set a flash message by passing the key, followed by the value, to req.flash()
+    req.flash('success','logged out successfully');
     return res.redirect('/');
 }
