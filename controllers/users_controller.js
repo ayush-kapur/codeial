@@ -51,7 +51,7 @@ module.exports.sign_up = function(req,res){
 // get the sign up data
 module.exports.create = function(req,res){
     if(req.body.password != req.body.confirm_password){
-        console.log('wrong password');
+        req.flash('error','The passswords do not match');
         return res.redirect('back');
     }
     console.log(req.body);
@@ -59,20 +59,22 @@ module.exports.create = function(req,res){
     // if the passwords match find in the database
     User.findOne({email: req.body.email},function(err,user){
         if(err){
-            console.log('error in finding user in signing up');
-            return
+            req.flash('error','error in finding user in signing up');
+            return res.redirect('back');
         }
         // if not found create
         if(!user){
             User.create(req.body, function(err,user){
                 if(err){
-                    console.log('error in creating user during signing up');
-                    return
+                    req.flash('error','error in creating user during signing up');
+                    return res.redirect('back');
                 }
+                req.flash('success','Account created successfully');
                 return res.redirect('/users/sign-in');
             })
         }
         else{
+            req.flash('error','This email id is already registered');
             return res.redirect('back');
         }
     });
@@ -89,6 +91,7 @@ module.exports.createSession = function(req,res){
 module.exports.destroySession = function(req,res){
     req.logout();
     // Set a flash message by passing the key, followed by the value, to req.flash()
-    req.flash('success','logged out successfully');
+    req.flash('error','logged out successfully');
+    
     return res.redirect('/');
 }

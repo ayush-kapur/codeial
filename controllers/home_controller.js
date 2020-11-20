@@ -67,7 +67,8 @@ module.exports.home = async function(req,res){
 
     }catch(err){
         console.log('Error',err);
-        return;
+        req.flash('error',err);
+        return res.redirect('/');
     }    
 }
 // Using promises

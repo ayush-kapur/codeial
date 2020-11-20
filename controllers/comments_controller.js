@@ -36,12 +36,18 @@ module.exports.create = async function(req,res){
             post.comments.push(comment);
             // after evry post post command you need to add save in order to lock the changes
             post.save();
+            // adding flash messages
+            req.flash('success','Comment published');
+
             return res.redirect('back');
         }
 
     }catch(err){
-        console.log('error in creating a comment',err);
-        return;
+        // console.log('error in creating a comment',err);
+        // adding flash messages
+        req.flash('error',err);
+
+        return res.redirect('back');
     }
 }
 
@@ -69,14 +75,23 @@ module.exports.destroy = async function(req,res){
             comment.remove();
             let post = await Post.findByIdAndUpdate(postId,{$pull:
             {comment: req.params.id}});
+            
+            // adding flash messages
+            req.flash('success','Comment deleted');
 
             return res.redirect('back');
         }
         else{
+            // adding flash messages
+            req.flash('error','You cannot delete the comment');
+
             return res.redirect('back');
         }
     }catch(err){
-        console.log('Error',err);
-        return;
+        // console.log('Error',err);
+        // adding flash messages
+        req.flash('error',err);
+        
+        return res.redirect('back');
     }
 }
